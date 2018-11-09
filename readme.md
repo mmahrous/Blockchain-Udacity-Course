@@ -6,7 +6,7 @@ BlockChain web service, this service enable you to be programaticlly interface w
 This uses hapijs https://hapijs.com and Joijs to validate the data.
 
 ## API documentation
-This api is accessible through `HTTP` API endpoint `http://localhost:8080`
+This api is accessible through `HTTP` API endpoint `http://localhost:8000`
 
 ### Routes
 ### Get Block with height

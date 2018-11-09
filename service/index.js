@@ -3,7 +3,7 @@ const routes = require('./routes')
 // start server
 const server = Hapi.server({
     host: 'localhost',
-    port: 8080,
+    port: 8000,
     routes: {
         validate: {
             failAction: (request, h, err) => {
