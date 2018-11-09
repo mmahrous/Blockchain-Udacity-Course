@@ -6,8 +6,17 @@ const _ = require('lodash')
 class BlockChain {
     constructor() {
         // create the chain
-        this.db = level(`${__dirname}/db`, {
+        this.db = level(`db`, {
             valueEncoding: 'json'
+        })
+
+        // add genesis block
+        this.getBlockCount()
+        .then( count => {
+            if (count == 0 ) return this.addBlock(this.createGenesisBlock(), true)
+        })
+        .then( genesis => {
+            if (genesis) console.log(`Genesis block added with hash ${genesis.hash}`)
         })
     }
     // get blocks count
@@ -59,7 +68,8 @@ class BlockChain {
         // create the uniq hash value for the block
         block.hash = this.createHash(JSON.stringify(block))
         // add it to leveldb
-        return await this.db.put(block.hash, block)
+        await this.db.put(block.hash, block)
+        return block
     }
 
     // get best block last block added to the chain
@@ -86,6 +96,8 @@ class BlockChain {
     // get block its height
     async getBlockByHeight(height) {
         let blocks = await this.getBlocks()
+        // check if this height is not present
+        if (height > blocks.length-1) return false
         // find the block in the array of blocks
         return blocks.find(n => n.height == height)
     }
