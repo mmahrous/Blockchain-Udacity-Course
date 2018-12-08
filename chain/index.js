@@ -102,6 +102,13 @@ class BlockChain {
         return blocks.find(n => n.height == height)
     }
 
+    // get block its height
+    async getBlocskByAddress(address) {
+        let blocks = await this.getBlocks()
+        // find blocks in the array of blocks that match address
+        return blocks.filter(n => n.body.address == address)
+    }
+
     // validate the block
     async validateBlock(height) {
         // get the block byt its height

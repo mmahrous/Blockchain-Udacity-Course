@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bitcoinjs-lib": "^4.0.2",
+    "bitcoinjs-message": "^2.0.0",
     "hapi": "^17.7.0",
     "joi": "^14.0.4",
     "level": "^4.0.0",
